@@ -15,14 +15,17 @@ class App extends Component {
     })
   }
 
-
-
   render() {
+    const { posts } = this.state
     return (
       <div className="App">
-        Hey there Beren - got some data?
+        <ul className="post-list">
+          {posts.map((posts)=>(
+            <li className="post-details">{ posts.title }, {posts.author}</li>
+          ))}
+        </ul>
       </div>
-    );
+    )
   }
 }
 
