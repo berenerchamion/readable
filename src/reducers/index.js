@@ -4,11 +4,10 @@ import {
   DELETE_POST
 } from '../actions'
 
-function posts (action){
-  const {title, body, author, category}
+function posts (state={}, action){
+  const {title, body, author, category} = action
 
-  switch (action.type)
-  {
+  switch (action.type) {
     case ADD_POST:
       return {
       }
@@ -20,3 +19,5 @@ function posts (action){
       return state
   }
 }
+
+export default posts

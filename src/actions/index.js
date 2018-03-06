@@ -1,4 +1,4 @@
-export const ADD_PPOST = 'ADD_POST'
+export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 
 export function addPost ({title, body, author, category}) {
