@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Loading from 'react-loading'
 import * as ReadableAPI from '../utils/ReadableAPI'
-import { getPosts } from '../actions'
+import { getAllPosts } from '../actions'
 
 class App extends Component {
 
@@ -12,35 +12,32 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.props.getPosts()
+    //this.props.getPosts()
+    ReadableAPI.fetchPosts().then(p => { this.props.getPosts(p) })
     this.setState(() => ({
       randomBoolean: true
     }))
   }
 
   render() {
-    const { posts } = this.state
+    const { posts } = this.props
+    console.log(posts)
     return (
       <div className="App">
-        <ul className="post-list">
-          {posts.map((posts)=>(
-            <li key={ posts.id } className="post-details">{ posts.title }, {posts.author}</li>
-          ))}
-        </ul>
       </div>
     )
   }
 }
-const mapStateToProps = (state) => {
-  return { ...state }
+
+function mapStateToProps(state){
+  return {
+    posts: state.posts,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
-    getPosts()
-    {
-      dispatch(getPosts())
-    }
+  return {
+    getPosts: (p) => dispatch(getAllPosts(p))
   }
 }
 

@@ -1,3 +1,5 @@
+import { GET_POSTS } from '../actions'
+
 const api = process.env.REACT_APP_READABLE_API_URL
 
 let token = localStorage.token
@@ -10,7 +12,7 @@ if (!token)
     'Authorization': token
   }
 
-  export const getPosts = () => {
-    return  fetch(`${api}/posts`, { headers })
-        .then((res) => res.json())
-  }
+  export const fetchPosts = () =>
+     fetch(`${api}/posts`, { headers })
+          .then((res) => res.json())
+  

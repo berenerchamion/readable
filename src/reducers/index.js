@@ -1,22 +1,21 @@
 import { reducer } from 'redux'
-import { api } from '../utils/ReadableAPI'
+import { fetchPosts } from '../utils/ReadableAPI'
 import {
   ADD_POST,
   GET_POSTS,
   DELETE_POST
 } from '../actions'
 
-function posts (state={}, action){
-  const {title, body, author, category} = action
+function posts (state= [], action){
+  const {posts} = action
 
   switch (action.type) {
     case ADD_POST:
       return {
       }
     case GET_POSTS:
-      console.log('Got to teh reducer ok!')
-      return {
-
+      return { ...state,
+        posts: action.posts
       }
     case DELETE_POST:
       return {
