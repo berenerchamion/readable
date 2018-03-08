@@ -14,9 +14,8 @@ function posts (state= [], action){
       return {
       }
     case GET_POSTS:
-      return { ...state,
-        posts: action.posts
-      }
+      return action.posts
+      
     case DELETE_POST:
       return {
 
