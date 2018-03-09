@@ -14,3 +14,8 @@ if (!token)
     return fetch(`${api}/posts`, { headers })
          .then((res) => res.json())
   }
+
+  export const fetchPost = (id) => {
+    return fetch(`${api}/posts/${id}`, { headers })
+         .then((res) => res.json())
+  }

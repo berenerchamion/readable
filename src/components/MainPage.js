@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import * as actions from '../../actions'
+import { Link } from 'react-router-dom'
+import * as actions from '../actions'
 
 class MainPage extends Component{
   static propTypes = {
@@ -18,9 +19,11 @@ class MainPage extends Component{
       <ul className="post-list">
       {posts.map((post)=>(
         <li key={ post.id } className="post-details">
-          { post.title },
+          <Link to={`/post/${post.id}`}>
+            { post.title }
+          </Link>,
           { post.category },
-          { post.id }, 
+          { post.id },
           { post.author }</li>
       ))}
     </ul>

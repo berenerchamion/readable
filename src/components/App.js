@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Route, withRouter, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Main from './main/MainPage'
+import Main from './MainPage'
+import Post from './Post'
 
 class App extends Component {
 
@@ -15,13 +16,14 @@ class App extends Component {
   }
 
   render() {
-    //const { posts } = this.props
     return (
       <div className="App">
         <div className="header">
+          House of Beor's Readable Project - need to fancy this up a bit later...
         </div>
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/post/:id" component={Post} />
         </Switch>
       </div>
     )
