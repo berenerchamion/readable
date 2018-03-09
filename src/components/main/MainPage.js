@@ -17,7 +17,11 @@ class MainPage extends Component{
     return <div>
       <ul className="post-list">
       {posts.map((post)=>(
-        <li key={ post.id } className="post-details">{ post.title }, {post.author}</li>
+        <li key={ post.id } className="post-details">
+          { post.title },
+          { post.category },
+          { post.id }, 
+          { post.author }</li>
       ))}
     </ul>
       </div>
