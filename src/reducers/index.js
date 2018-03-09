@@ -1,28 +1,8 @@
-import { reducer } from 'redux'
-import { fetchPosts } from '../utils/ReadableAPI'
-import {
-  ADD_POST,
-  GET_POSTS,
-  DELETE_POST
-} from '../actions'
+import { combineReducers } from 'redux'
 
-function posts (state= [], action){
-  const {posts} = action
+import posts from './post'
+import comments from './comments'
 
-  switch (action.type) {
-    case ADD_POST:
-      return {
-      }
-    case GET_POSTS:
-      return action.posts
-      
-    case DELETE_POST:
-      return {
-
-      }
-    default:
-      return state
-  }
-}
-
-export default posts
+export default combineReducers({
+  posts, comments
+})
