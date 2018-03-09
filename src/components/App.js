@@ -4,6 +4,8 @@ import { Route, withRouter, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Main from './MainPage'
 import Post from './Post'
+import { Link } from 'react-router-dom'
+import AddPost from './AddPost'
 
 class App extends Component {
 
@@ -19,11 +21,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-          House of Beor's Readable Project - need to fancy this up a bit later...
+          <div className="banner">House of Beor's Readable Project - need to fancy this up a bit later...</div>
+          <div className="addPost"><Link to={`/add`}>Add Something</Link></div>
         </div>
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/post/:id" component={Post} />
+          <Route exact path="/add" component={AddPost} />
         </Switch>
       </div>
     )

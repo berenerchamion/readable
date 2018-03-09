@@ -28,6 +28,14 @@ export const fetchOnePost = (id) => {
   }
 }
 
+export const addPost = () => {
+  return (dispatch) => {
+    addPost().then(post => {
+      dispatch({ type: ADD_POST, post })
+    })
+  }
+}
+
 
 //Comments related APIs
 export const ADD_COMMENT = 'ADD_COMMENT'

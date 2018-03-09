@@ -9,26 +9,27 @@ class MainPage extends Component{
     posts: PropTypes.array
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchAllPosts()
   }
 
   render() {
     const { posts } = this.props
-    return <div>
-      <ul className="post-list">
-      {posts.map((post)=>(
-        <li key={ post.id } className="post-details">
-          <Link to={`/post/${post.id}`}>
-            { post.title }
-          </Link>,
-          { post.category },
-          { post.id },
-          { post.author }</li>
-      ))}
-    </ul>
+    return (
+      <div>
+        <ul className="post-list">
+        {posts.map((post)=>(
+          <li key={ post.id } className="post-details">
+            <Link to={`/post/${post.id}`}>
+              { post.title }
+            </Link>,
+            { post.category },
+            { post.id },
+            { post.author }</li>
+        ))}
+        </ul>
       </div>
-  }
+    )}
 }
 
 function mapStateToProps({ posts }) {

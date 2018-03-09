@@ -21,7 +21,6 @@ class Post extends Component{
         <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
         <li className="post-category">Topic: {post.category}</li>
         <li className="post-body">{post.body}</li>
-        <li></li>
       </ul>
       </div>
     )
