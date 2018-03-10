@@ -16,24 +16,34 @@ class MainPage extends Component{
 
   render() {
     const { posts } = this.props
+    const { categories } = this.props
     return (
-      <div>
-        <ul className="post-list">
-        {posts.map((post)=>(
-          <li key={ post.id } className="post-details">
-            <Link to={`/post/${post.id}`}>
-              { post.title }
-            </Link>,
-            { post.category },
-            { post.id },
-            { post.author }</li>
-        ))}
-        </ul>
+      <div className="container">
+        <div className="categories">
+          <ul className="category-list">
+            {categories.map((category) => (
+              <li>{category.name}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="posts">
+          <ul className="post-list">
+          {posts.map((post) => (
+            <li key={ post.id } className="post-details">
+              <Link to={`/post/${post.id}`}>
+                { post.title }
+              </Link>,
+              { post.category },
+              { post.id },
+              { post.author }</li>
+          ))}
+          </ul>
+        </div>
       </div>
     )}
 }
 
-function mapStateToProps({ posts }, { categories }) {
+function mapStateToProps({ posts, categories }) {
   return {
     posts: posts,
     categories: categories

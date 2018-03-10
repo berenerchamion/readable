@@ -1,10 +1,9 @@
 import { FETCH_CATEGORIES } from '../actions'
 
 function categories(state=[], action) {
-  const { categories } = action
   switch(action.type) {
     case FETCH_CATEGORIES:
-      return categories
+      return action.categories.categories
     default:
       return state
   }
