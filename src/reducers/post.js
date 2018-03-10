@@ -1,5 +1,6 @@
 import { FETCH_POSTS,
-          FETCH_POST } from '../actions'
+          FETCH_POST,
+          ADD_POST } from '../actions'
 
 function posts(state=[], action) {
   const { posts, post } = action
@@ -7,6 +8,8 @@ function posts(state=[], action) {
     case FETCH_POSTS:
       return posts.filter(post => !(post.deleted))
     case FETCH_POST:
+      return post
+    case ADD_POST:
       return post
     default:
       return state

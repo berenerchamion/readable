@@ -8,7 +8,7 @@ class AddPost extends Component{
   render(){
     return(
       <div className="addpost">
-      Hey there - add something.
+      Hey there - add something...
       </div>
     )
   }
