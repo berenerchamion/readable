@@ -1,5 +1,6 @@
 import { fetchPosts,
-          fetchPost
+          fetchPost,
+          fetchCategories
         } from '../utils/ReadableAPI'
 
 export const FETCH_POSTS = 'FETCH_POSTS'
@@ -41,7 +42,14 @@ export const addPost = () => {
 export const ADD_COMMENT = 'ADD_COMMENT'
 
 //Categories related APIs
-export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
+export const fetchAllCategories = () => {
+    return (dispatch) => {
+      fetchCategories().then(categories => {
+        dispatch({ type: FETCH_CATEGORIES, categories })
+      })
+  }
+}
 
 //Voting related APIs
 export const VOTE_FOR = 'VOTE_FOR'

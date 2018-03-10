@@ -11,6 +11,7 @@ class MainPage extends Component{
 
   componentWillMount() {
     this.props.fetchAllPosts()
+    this.props.fetchAllCategories()
   }
 
   render() {
@@ -32,9 +33,10 @@ class MainPage extends Component{
     )}
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts }, { categories }) {
   return {
-    posts: posts
+    posts: posts,
+    categories: categories
   }
 }
 

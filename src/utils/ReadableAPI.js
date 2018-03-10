@@ -20,6 +20,11 @@ if (!token)
          .then((res) => res.json())
   }
 
-  export const addPost = (post) => {    
+  export const addPost = (post) => {
 
   }
+
+  export const fetchCategories = () => {
+      return fetch(`${api}/categories`, { headers })
+           .then((res) => res.json())
+    }
