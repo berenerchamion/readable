@@ -8,7 +8,7 @@ class MainPage extends Component{
   static propTypes = {
     posts: PropTypes.array
   }
-  
+
   componentDidMount() {
     this.props.fetchAllPosts()
   }
@@ -33,8 +33,11 @@ class MainPage extends Component{
                 Post: { post.title }
               </Link>,
               { post.category },
-              { post.id },
-              { post.author }</li>
+              { post.author },
+              <Link className="edit-post" to={`/posts/${post.id}` }>
+                Edit Post
+              </Link>,
+              </li>
           ))}
           </ul>
         </div>

@@ -33,7 +33,7 @@ export const fetchOnePost = (id) => {
 export const addNewPost = (postData, cb) => {
   return (dispatch) => {
     addPost(postData).then(() => cb())
-      dispatch({ type: ADD_POST, postData })
+    dispatch({ type: ADD_POST, postData })
   }
 }
 
