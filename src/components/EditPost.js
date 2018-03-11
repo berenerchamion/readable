@@ -7,3 +7,5 @@ import { Link } from 'react-router-dom'
 class EditPost extends Component{
 
 }
+
+export default connect(mapStateToProps, actions)(EditPost)
