@@ -8,10 +8,9 @@ class MainPage extends Component{
   static propTypes = {
     posts: PropTypes.array
   }
-
-  componentWillMount() {
+  
+  componentDidMount() {
     this.props.fetchAllPosts()
-    this.props.fetchAllCategories()
   }
 
   render() {
@@ -22,16 +21,16 @@ class MainPage extends Component{
         <div className="categories">
           <ul className="category-list">
             {categories.map((category) => (
-              <li>{category.name}</li>
+              <li key={category.name}>{category.name}</li>
             ))}
           </ul>
         </div>
         <div className="posts">
           <ul className="post-list">
           {posts.map((post) => (
-            <li key={ post.id } className="post-details">
+            <li className="post-details" key={post.id} >
               <Link to={`/post/${post.id}`}>
-                { post.title }
+                Post: { post.title }
               </Link>,
               { post.category },
               { post.id },

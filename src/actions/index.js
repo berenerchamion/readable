@@ -1,6 +1,7 @@
 import { fetchPosts,
           fetchPost,
-          fetchCategories
+          fetchCategories,
+          addPost
         } from '../utils/ReadableAPI'
 
 export const FETCH_POSTS = 'FETCH_POSTS'
@@ -29,11 +30,10 @@ export const fetchOnePost = (id) => {
   }
 }
 
-export const addPost = () => {
+export const addNewPost = (postData, cb) => {
   return (dispatch) => {
-    addPost().then(post => {
-      dispatch({ type: ADD_POST, post })
-    })
+    addPost(postData).then(() => cb())
+      dispatch({ type: ADD_POST, postData })
   }
 }
 
