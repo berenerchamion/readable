@@ -34,7 +34,7 @@ class MainPage extends Component{
               </Link>,
               { post.category },
               { post.author },
-              <Link className="edit-post" to={`/posts/${post.id}` }>
+              <Link className="edit-post" to={`/edit/${post.id}` }>
                 Edit Post
               </Link>,
               </li>

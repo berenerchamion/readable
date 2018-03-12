@@ -7,6 +7,7 @@ import Post from './Post'
 import { Link } from 'react-router-dom'
 import {fetchAllCategories } from '../actions'
 import AddPost from './AddPost'
+import EditPost from './EditPost'
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/post/:id" component={Post} />
           <Route exact path="/add" component={AddPost} />
+          <Route path="/edit/:id" component={EditPost} />
         </Switch>
       </div>
     )
