@@ -45,10 +45,10 @@ class MainPage extends Component{
     )}
 }
 
-function mapStateToProps({ posts, categories }) {
+function mapStateToProps(state) {
   return {
-    posts: posts,
-    categories: categories
+    posts: state.posts,
+    categories: state.categories
   }
 }
 
