@@ -29,6 +29,15 @@ if (!token)
     })
   }
 
+  export const editPost = (postData) => {
+    console.log("url" + `${api}/posts/${postData.id}`+ JSON.stringify({title: postData.title, body: postData.body}))
+    return fetch (`${api}/posts/${postData.id}`, {
+      method: 'PUT',
+      headers: headers,
+      body: JSON.stringify({title: postData.title, body: postData.body})
+    })
+  }
+
   export const fetchCategories = () => {
       return fetch(`${api}/categories`, { headers })
            .then((res) => res.json())

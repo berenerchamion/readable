@@ -1,6 +1,7 @@
 import { FETCH_POSTS,
           FETCH_POST,
-          ADD_POST
+          ADD_POST,
+          EDIT_POST
         } from '../actions'
 
 function posts(state=[], action) {
@@ -11,8 +12,14 @@ function posts(state=[], action) {
     case FETCH_POST:
       return post
     case ADD_POST:
-      console.log('Reducer Post' + JSON.stringify(action))
       return state.concat([postData])
+    case EDIT_POST:
+      return state.map(post => {
+        if (post.id === postData.id){
+          post = postData
+        }
+        return post
+      })
     default:
       return state
   }

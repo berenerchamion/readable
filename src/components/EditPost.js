@@ -6,25 +6,42 @@ import { Link } from 'react-router-dom'
 
 class EditPost extends Component{
 
-  editPost = (e) => {
-    e.preventDefault()
+  state = {
+    postId: ''
   }
 
+  editPost = (e) => {
+    e.preventDefault()
+    if (e.target.body.value ==="" || e.target.title.value =="")
+      alert("Hey, you need a title and body")
+    else {
+      const postData = {
+        id: this.state.postId,
+        title: e.target.title.value,
+        body: e.target.body.value
+      }
+      this.props.submitEdit(postData, () => this.props.history.push('/'))
+    }
+  }
 
   render(){
     const { post } = this.props
     let data
+    //This is a little hacky...maybe lodash would help here
     for(var i=0; i < post.length; i++) {
         if(post && post[i].id){
           data = post[i]
+          this.state.postId = data.id
         }
-        //houston we have a problem
+        else {
+          () => this.props.history.push('/')
+        }
     }
 
 
     return (
       <div className="editForm">
-        <form onSubmit={this.submitEdit}>
+        <form onSubmit={this.editPost}>
           <h2>Edit Post {data.id}</h2>
           <ul className="form-style-1">
             <li>
