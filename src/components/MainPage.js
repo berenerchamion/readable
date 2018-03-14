@@ -17,8 +17,8 @@ class MainPage extends Component{
     this.props.fetchAllPosts()
   }
 
-  updateFilter = (filter) => {
-    this.setState({cat: filter.trim() })
+  updateFilter = (e) => {
+    this.setState({ cat: e.trim() })
   }
 
   clearFilter = () => {
@@ -32,6 +32,7 @@ class MainPage extends Component{
 
     let displayedPosts
     if (cat != ''){
+      alert("Filtering with: " + cat)
       displayedPosts = posts.filter((post) => (post.category === cat))
     }
     else{
@@ -41,9 +42,10 @@ class MainPage extends Component{
       <div className="container">
         <div className="categories">
           <ul className="category-list">
-            <li key="all">All</li>
+            <button key="all" value="all" onClick={(event) => this.clearFilter()}>All</button>
             {categories.map((category) => (
-              <li key={category.name}>{category.name}</li>
+              <button key={category.name} value={category.name}
+                onClick={(event) => this.updateFilter(event.target.value)}>{category.name}</button>
             ))}
           </ul>
         </div>
