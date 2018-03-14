@@ -31,15 +31,21 @@ class MainPage extends Component{
     const { cat } = this.state
 
     let displayedPosts
+    let catLabel
+
     if (cat != ''){
-      alert("Filtering with: " + cat)
+      catLabel = cat
       displayedPosts = posts.filter((post) => (post.category === cat))
     }
     else{
+      catLabel = 'all'
       displayedPosts = posts
     }
     return (
       <div className="container">
+        <div className="current-category">
+          Currently looking at {catLabel} posts:
+        </div>
         <div className="categories">
           <ul className="category-list">
             <button key="all" value="all" onClick={(event) => this.clearFilter()}>All</button>
