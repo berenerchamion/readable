@@ -9,17 +9,39 @@ class MainPage extends Component{
     posts: PropTypes.array
   }
 
+  state = {
+    cat: ''
+  }
+
   componentDidMount() {
     this.props.fetchAllPosts()
+  }
+
+  updateFilter = (filter) => {
+    this.setState({cat: filter.trim() })
+  }
+
+  clearFilter = () => {
+    this.setState({cat: ''})
   }
 
   render() {
     const { posts } = this.props
     const { categories } = this.props
+    const { cat } = this.state
+
+    let displayedPosts
+    if (cat != ''){
+      displayedPosts = posts.filter((post) => (post.category === cat))
+    }
+    else{
+      displayedPosts = posts
+    }
     return (
       <div className="container">
         <div className="categories">
           <ul className="category-list">
+            <li key="all">All</li>
             {categories.map((category) => (
               <li key={category.name}>{category.name}</li>
             ))}
@@ -27,7 +49,7 @@ class MainPage extends Component{
         </div>
         <div className="posts">
           <ul className="post-list">
-          {posts.map((post) => (
+          {displayedPosts.map((post) => (
             <li className="post-details" key={post.id} >
               <Link to={`/post/${post.id}`}>
                 Post: { post.title }
