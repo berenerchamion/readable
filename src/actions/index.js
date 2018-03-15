@@ -2,7 +2,8 @@ import { fetchPosts,
           fetchPost,
           fetchCategories,
           addPost,
-          editPost
+          editPost,
+          fetchComments
         } from '../utils/ReadableAPI'
 
 export const FETCH_POSTS = 'FETCH_POSTS'
@@ -47,9 +48,21 @@ export const submitEdit = (postData, cb) => {
 
 //Comments related APIs
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+
+export const fetchAllComments = () => {
+  return (dispatch) => {
+    fetchComments().then(comments => {
+
+    })
+  }
+}
 
 //Categories related APIs
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
+
 export const fetchAllCategories = () => {
     return (dispatch) => {
       fetchCategories().then(categories => {

@@ -1,3 +1,8 @@
+import { ADD_COMMENT,
+        EDIT_COMMENT,
+        DELETE_COMMENT
+        } from '../actions'
+
 function comments(state={}, action) {
   switch(action.type) {
     case ADD_COMMENT:
