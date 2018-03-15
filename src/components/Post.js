@@ -12,7 +12,9 @@ class Post extends Component{
 
   render(){
     var posts = this.props.post
+    console.log(posts)
     var post = posts.pop()
+    console.log(post)
     return(
       <div className="container-post">
         <div className="single-post">
