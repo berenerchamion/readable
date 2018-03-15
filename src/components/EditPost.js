@@ -38,7 +38,6 @@ class EditPost extends Component{
         }
     }
 
-
     return (
       <div className="editForm">
         <form onSubmit={this.editPost}>
@@ -63,10 +62,7 @@ class EditPost extends Component{
 }
 
 function mapStateToProps(state, { match }) {
-  console.log(state.posts)
-  console.log(match.params.id)
   return {
-    //post: _.find(posts, { id: match.params.id }),
     post: state.posts.filter((post) => (post.id === match.params.id))
   }
 }

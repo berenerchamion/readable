@@ -3,7 +3,9 @@ import { fetchPosts,
           fetchCategories,
           addPost,
           editPost,
-          fetchComments
+          fetchComments,
+          addComment,
+          editComment
         } from '../utils/ReadableAPI'
 
 export const FETCH_POSTS = 'FETCH_POSTS'
@@ -55,8 +57,15 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const fetchAllComments = () => {
   return (dispatch) => {
     fetchComments().then(comments => {
-
+      dispatch({ type: FETCH_COMMENTS, comments})
     })
+  }
+}
+
+export const addNewComment = (commentData, cb) => {
+  return (dispatch) => {
+    addComment(commentData). then(() => cb())
+    dispatch({type: ADD_COMMENT, commentData})
   }
 }
 

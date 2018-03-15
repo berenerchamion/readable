@@ -8,28 +8,32 @@ import { Link } from 'react-router-dom'
 class Post extends Component{
 
   componentWillMount(){
-    console.log(this.props.match.params.id)
-    this.props.fetchOnePost(this.props.match.params.id)
   }
 
   render(){
-    const { post } = this.props
-    console.log(post)
+    var posts = this.props.post
+    var post = posts.pop()
     return(
-      <div className="single-post">
-      <ul className="post-details">
-        <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
-        <li className="post-category">Topic: {post.category}</li>
-        <li className="post-body">{post.body}</li>
-      </ul>
+      <div className="container-post">
+        <div className="single-post">
+          <ul className="post-details">
+            <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
+            <li className="post-category">Topic: {post.category}</li>
+            <li className="post-body">{post.body}</li>
+          </ul>
+        </div>
+        <div className="post-comments">
+          This is where a comment should be!
+        </div>
+
       </div>
     )
   }
 }
 
-function mapStateToProps({ posts }){
+function mapStateToProps(state, { match }) {
   return {
-    post: posts
+    post: state.posts.filter((post) => (post.id === match.params.id))
   }
 }
 

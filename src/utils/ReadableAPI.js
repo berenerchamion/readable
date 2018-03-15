@@ -30,7 +30,6 @@ if (!token)
   }
 
   export const editPost = (postData) => {
-    console.log("url" + `${api}/posts/${postData.id}`+ JSON.stringify({title: postData.title, body: postData.body}))
     return fetch (`${api}/posts/${postData.id}`, {
       method: 'PUT',
       headers: headers,
@@ -43,14 +42,27 @@ if (!token)
            .then((res) => res.json())
     }
 
-export const fetchComments = () => {
+  export const fetchComments = () => {
+    return fetch(`${api}/comments`, { headers })
+         .then((res) => res.json())
+  }
 
-}
+  export const addComment = (commentData) => {
+    return fetch (`${api}/comments`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(commentData)
+    })
+  }
 
-export const editComments = () => {
+  export const editComment = (commentData) => {
+    return fetch (`${api}/posts/${commentData.id}`, {
+      method: 'PUT',
+      headers: headers,
+      body: JSON.stringify({title: commentData.title, body: commentData.body})
+    })
+  }
 
-}
-
-export const deleteComments = () => {
+export const deleteComment = () => {
 
 }
