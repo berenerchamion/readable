@@ -60,13 +60,12 @@ class MainPage extends Component{
           {displayedPosts.map((post) => (
             <li className="post-details" key={post.id} >
               <Link to={`/post/${post.id}`}>
-                Post: { post.title }
-              </Link>,
-              { post.category },
-              { post.author },
-              <Link className="edit-post" to={`/edit/${post.id}` }>
-                Edit Post
-              </Link>,
+                { post.title }</Link> by { post.author }
+                <Link className="edit-post" to={`/edit/${post.id}` }>
+                    Edit Post
+                </Link><br/>
+              Category: { post.category }<br/>
+            Popularity: { post.voteScore } votes
               </li>
           ))}
           </ul>

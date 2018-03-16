@@ -7,7 +7,14 @@ import { Link } from 'react-router-dom'
 
 class Post extends Component{
 
-  componentWillMount(){
+  state = {
+    comments: [ ]
+  }
+
+  componentWillReceiveProps(){
+    this.props.fetchPostComments(this.props.postId).then ((comments) =>{
+      this.setState({ comments })
+    })
   }
 
   render(){
@@ -21,6 +28,7 @@ class Post extends Component{
           <ul className="post-details">
             <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
             <li className="post-category">Topic: {post.category}</li>
+            <li className="post-votes">Popularity: {post.voteScore}</li>
             <li className="post-body">{post.body}</li>
           </ul>
         </div>
@@ -35,7 +43,8 @@ class Post extends Component{
 
 function mapStateToProps(state, { match }) {
   return {
-    post: state.posts.filter((post) => (post.id === match.params.id))
+    post: state.posts.filter((post) => (post.id === match.params.id)),
+    postId: match.params.id
   }
 }
 

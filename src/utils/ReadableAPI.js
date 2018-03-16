@@ -42,8 +42,8 @@ if (!token)
            .then((res) => res.json())
     }
 
-  export const fetchComments = () => {
-    return fetch(`${api}/comments`, { headers })
+  export const fetchComments = (postId) => {
+    return fetch(`${api}/${postId}/comments`, { headers })
          .then((res) => res.json())
   }
 

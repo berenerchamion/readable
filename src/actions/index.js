@@ -54,9 +54,9 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 
-export const fetchAllComments = () => {
+export const fetchPostComments = (postId) => {
   return (dispatch) => {
-    fetchComments().then(comments => {
+    fetchComments(postId).then(comments => {
       dispatch({ type: FETCH_COMMENTS, comments})
     })
   }
