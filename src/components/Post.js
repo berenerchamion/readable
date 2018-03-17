@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class Post extends Component{
@@ -11,40 +11,54 @@ class Post extends Component{
     comments: [ ]
   }
 
-  componentWillReceiveProps(){
-    this.props.fetchPostComments(this.props.postId).then ((comments) =>{
-      this.setState({ comments })
-    })
+  componentWillMount(){
+    this.props.fetchPostComments(this.props.postId)
   }
 
   render(){
     var posts = this.props.post
-    console.log(posts)
     var post = posts.pop()
-    console.log(post)
-    return(
-      <div className="container-post">
-        <div className="single-post">
-          <ul className="post-details">
-            <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
-            <li className="post-category">Topic: {post.category}</li>
-            <li className="post-votes">Popularity: {post.voteScore}</li>
-            <li className="post-body">{post.body}</li>
-          </ul>
-        </div>
-        <div className="post-comments">
-          This is where a comment should be!
-        </div>
+    var comments = this.props.comments[this.props.postId]
 
-      </div>
-    )
+    console.log(this.props.postId + ": " + comments)
+
+    if (!post){
+      return (
+      <Redirect to={{ pathname: '/'}}/>
+      )
+    }
+    else{
+      return(
+        <div className="container-post">
+          <div className="single-post">
+            <ul className="post-details">
+              <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
+              <li className="post-category">Topic: {post.category}</li>
+              <li className="post-votes">Popularity: {post.voteScore}</li>
+              <li className="post-body">{post.body}</li>
+            </ul>
+          </div>
+          <div className="post-comments">
+            <ul className="comment-list">
+              {comments.map((comment) => (
+                <li className="comment">{comment.body} - {comment.author}</li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      )
+    }
+
+
   }
 }
 
 function mapStateToProps(state, { match }) {
   return {
     post: state.posts.filter((post) => (post.id === match.params.id)),
-    postId: match.params.id
+    postId: match.params.id,
+    comments: state.comments
   }
 }
 

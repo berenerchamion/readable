@@ -6,10 +6,13 @@ import {
         } from '../actions'
 
 function comments(state={}, action) {
-  const { comments } = action
+  const { comments, postId } = action
   switch(action.type) {
     case FETCH_COMMENTS:
-      return state.comments
+      return{
+        ...state,
+        [action.postId]: comments
+      }
     case ADD_COMMENT:
       return state
     case EDIT_COMMENT:

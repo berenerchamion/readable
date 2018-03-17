@@ -57,7 +57,7 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const fetchPostComments = (postId) => {
   return (dispatch) => {
     fetchComments(postId).then(comments => {
-      dispatch({ type: FETCH_COMMENTS, comments})
+      dispatch({ type: FETCH_COMMENTS, postId, comments})
     })
   }
 }
