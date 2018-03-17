@@ -38,14 +38,15 @@ class Post extends Component{
               <li className="post-body">{post.body}</li>
             </ul>
           </div>
-          <div className="post-comments">
-            <ul className="comment-list">
-              {comments.map((comment) => (
-                <li className="comment">{comment.body} - {comment.author}</li>
-              ))}
-            </ul>
-          </div>
-
+          {comments &&
+            <div className="post-comments">
+              <ul className="comment-list">
+                {comments.map((comment) => (
+                  <li key={comment.id} className="comment">{comment.body} - {comment.author}</li>
+                ))}
+              </ul>
+            </div>
+          }
         </div>
       )
     }
