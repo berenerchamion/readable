@@ -7,7 +7,6 @@ import {
 
 function comments(state={}, action) {
   const { comments, postId } = action
-  console.log("postId: " + postId + " " + comments)
   switch(action.type) {
     case FETCH_COMMENTS:
       return{

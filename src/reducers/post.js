@@ -1,7 +1,8 @@
 import { FETCH_POSTS,
           FETCH_POST,
           ADD_POST,
-          EDIT_POST
+          EDIT_POST,
+          VOTE_FOR_POST
         } from '../actions'
 
 function posts(state=[], action) {
@@ -17,6 +18,18 @@ function posts(state=[], action) {
       return state.map(post => {
         if (post.id === postData.id){
           post = postData
+        }
+        return post
+      })
+    case VOTE_FOR_POST:
+      return state.map(post => {
+        if (post.id === action.postData.postId) {
+          if (action.postData.voteType === "upVote") {
+            post.voteScore += 1
+          }
+          if (action.postData.voteType === "downVote") {
+            post.voteScore -= 1
+          }
         }
         return post
       })

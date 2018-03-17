@@ -25,6 +25,15 @@ class MainPage extends Component{
     this.setState({cat: ''})
   }
 
+  submitPostVote = (id, voteType) => {
+    const postData = {
+      id: id,
+      voteType: voteType
+    }
+    this.props.voteForPost(postData)
+    this.props.fetchAllPosts()
+  }
+
   render() {
     const { posts } = this.props
     const { categories } = this.props
@@ -65,7 +74,9 @@ class MainPage extends Component{
                     Edit Post
                 </Link><br/>
               Category: { post.category }<br/>
-              Popularity: { post.voteScore } - Vote: Up or Down
+            Popularity: { post.voteScore }
+            <button className="vote-button" onClick={(event => this.submitPostVote(`${post.id}`, 'upVote'))}>+</button>
+            <button onClick={(event => this.submitPostVote(`${post.id}`, 'downVote'))}>-</button>
               </li>
           ))}
           </ul>

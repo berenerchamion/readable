@@ -37,6 +37,14 @@ if (!token)
     })
   }
 
+  export const votePost = (postData) => {
+    return fetch (`${api}/posts/${postData.id}`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({option: postData.voteType})
+    })
+  }
+
   export const fetchCategories = () => {
       return fetch(`${api}/categories`, { headers })
            .then((res) => res.json())
@@ -60,6 +68,14 @@ if (!token)
       method: 'PUT',
       headers: headers,
       body: JSON.stringify({title: commentData.title, body: commentData.body})
+    })
+  }
+
+  export const voteComment = (postData) => {
+    return fetch (`${api}/comments/${postData.commentId}`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({option: postData.vote})
     })
   }
 
