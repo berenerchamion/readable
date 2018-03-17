@@ -34,7 +34,7 @@ class Post extends Component{
             <ul className="post-details">
               <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
               <li className="post-category">Topic: {post.category}</li>
-              <li className="post-votes">Popularity: {post.voteScore}</li>
+              <li className="post-votes">Popularity: {post.voteScore} - Vote: Up or Down</li>
               <li className="post-body">{post.body}</li>
             </ul>
           </div>

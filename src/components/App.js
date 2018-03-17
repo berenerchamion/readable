@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Route, withRouter, Switch } from 'react-router-dom'
+import { Route, withRouter, Link, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Main from './MainPage'
 import Post from './Post'
-import { Link } from 'react-router-dom'
 import {fetchAllCategories } from '../actions'
 import AddPost from './AddPost'
 import EditPost from './EditPost'
@@ -24,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-          <div className="banner">House of Beor's Readable Project - need to fancy this up a bit later...</div>
+          <div className="banner"><Link className="link-home" to={`/`}>House of Beor's Readable Project</Link> - need to fancy this up a bit later...</div>
           <div className="addPost"><Link className="addPost" to={`/add`}>Add Something</Link></div>
         </div>
         <Switch>

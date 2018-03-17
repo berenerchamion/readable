@@ -65,7 +65,7 @@ class MainPage extends Component{
                     Edit Post
                 </Link><br/>
               Category: { post.category }<br/>
-            Popularity: { post.voteScore } votes
+              Popularity: { post.voteScore } - Vote: Up or Down
               </li>
           ))}
           </ul>
