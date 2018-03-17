@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Link, Redirect } from 'react-router-dom'
 
-
 class Post extends Component{
 
   state = {
@@ -13,6 +12,15 @@ class Post extends Component{
 
   componentWillMount(){
     this.props.fetchPostComments(this.props.postId)
+  }
+
+  submitPostVote = (id, voteType) => {
+    const postData = {
+      id: id,
+      voteType: voteType
+    }
+    this.props.voteForPost(postData)
+    this.props.fetchAllPosts()
   }
 
   render(){
@@ -34,7 +42,10 @@ class Post extends Component{
             <ul className="post-details">
               <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
               <li className="post-category">Topic: {post.category}</li>
-              <li className="post-votes">Popularity: {post.voteScore}</li>
+              <li className="post-votes">Popularity: {post.voteScore}
+                <button className="vote-button" onClick={(event => this.submitPostVote(`${post.id}`, 'upVote'))}>+</button>
+                <button onClick={(event => this.submitPostVote(`${post.id}`, 'downVote'))}>-</button>
+              </li>
               <li className="post-body">{post.body}</li>
             </ul>
           </div>
