@@ -53,7 +53,7 @@ class MainPage extends Component{
     return (
       <div className="container">
         <div className="current-category">
-          Currently looking at {catLabel} posts:
+          <h2 className="section-title">Currently looking at {catLabel} posts:</h2>
         </div>
         <div className="categories">
           <ul className="category-list">

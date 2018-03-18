@@ -47,6 +47,7 @@ class Post extends Component{
       return(
         <div className="container-post">
           <div className="single-post">
+            <h2 className="section-title">Post Details: </h2>
             <ul className="post-details">
               <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
               <li className="post-category">Topic: {post.category}</li>
@@ -59,6 +60,7 @@ class Post extends Component{
           </div>
           {comments &&
             <div className="post-comments">
+              <h2 className="section-title">Comments: </h2>
               <ul className="comment-list">
                 {comments.map((comment) => (
                   <li key={comment.id} className="comment">{comment.author} Votes: {comment.voteScore}
