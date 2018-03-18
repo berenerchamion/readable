@@ -27,7 +27,7 @@ function posts(state=[], action) {
           if (action.postData.voteType === "upVote") {
             post.voteScore += 1
           }
-          if (action.postData.voteType === "downVote") {
+          else if (action.postData.voteType === "downVote") {
             post.voteScore -= 1
           }
         }

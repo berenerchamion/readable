@@ -23,12 +23,20 @@ class Post extends Component{
     this.props.fetchAllPosts()
   }
 
+  submitCommentVote = (postId, commentId, voteType) => {
+    const postData = {
+      postId: postId,
+      commentId: commentId,
+      voteType: voteType
+    }
+    this.props.voteForComment(postData)
+    this.props.fetchPostComments()
+  }
+
   render(){
     var posts = this.props.post
     var post = posts.pop()
     var comments = this.props.comments[this.props.postId]
-
-    console.log(this.props.postId + ": " + comments)
 
     if (!post){
       return (
@@ -42,7 +50,7 @@ class Post extends Component{
             <ul className="post-details">
               <li className="post-header">{post.title} by {post.author} on {post.timestamp}</li>
               <li className="post-category">Topic: {post.category}</li>
-              <li className="post-votes">Popularity: {post.voteScore}
+              <li className="post-votes">Votes: {post.voteScore}
                 <button className="vote-button" onClick={(event => this.submitPostVote(`${post.id}`, 'upVote'))}>+</button>
                 <button onClick={(event => this.submitPostVote(`${post.id}`, 'downVote'))}>-</button>
               </li>
@@ -53,7 +61,11 @@ class Post extends Component{
             <div className="post-comments">
               <ul className="comment-list">
                 {comments.map((comment) => (
-                  <li key={comment.id} className="comment">{comment.body} - {comment.author}</li>
+                  <li key={comment.id} className="comment">{comment.author} Votes: {comment.voteScore}
+                    <button className="vote-button" onClick={(event => this.submitCommentVote(`${post.id}`, `${comment.id}`, 'upVote'))}>+</button>
+                    <button onClick={(event => this.submitCommentVote(`${post.id}`, `${comment.id}`, 'downVote'))}>-</button>
+                    <br/>
+                  {comment.body} </li>
                 ))}
               </ul>
             </div>
@@ -61,8 +73,6 @@ class Post extends Component{
         </div>
       )
     }
-
-
   }
 }
 

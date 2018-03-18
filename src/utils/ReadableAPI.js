@@ -72,10 +72,11 @@ if (!token)
   }
 
   export const voteComment = (postData) => {
+    console.log(`${api}/comments/${postData.commentId}`)
     return fetch (`${api}/comments/${postData.commentId}`, {
       method: 'POST',
       headers: headers,
-      body: JSON.stringify({option: postData.vote})
+      body: JSON.stringify({option: postData.voteType})
     })
   }
 
