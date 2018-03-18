@@ -22,8 +22,23 @@ function comments(state={}, action) {
     case DELETE_COMMENT:
       return state
     case VOTE_FOR_COMMENT:
-      console.log("commentId: " + postData.commentId + " postId: " + postData.postId + " voteTpye: " + postData.voteType)
-      return state
+      console.log("commentId: " + postData.commentId
+      + " postId: " + postData.postId
+      + " voteTpye: " + postData.voteType)
+      return{
+        ...state,
+        [postData.postId ]: state[postData.postId].map(comment => {
+          if (comment.id === postData.commentId){
+            if (action.postData.voteType === "upVote") {
+              comment.voteScore += 1
+            }
+            if (action.postData.voteType === "downVote") {
+              comment.voteScore -= 1
+            }
+          }
+          return comment
+        })
+      }
     default:
       return state
   }
