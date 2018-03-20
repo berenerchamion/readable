@@ -60,16 +60,17 @@ class Post extends Component{
   }
 
   render(){
-    console.log("Modal hell is here...")
+    console.log(this.props)
+    console.log(this.state)
     var posts = this.props.post
     var post = posts.pop()
     var comments = this.props.comments[this.props.postId]
 
-    const { isModalOpen } = this.state
-    console.log("modal open: " + isModalOpen)
+    const { modalIsOpen } = this.state
+    console.log("modal open: " + modalIsOpen)
 
     if (!this.props.post){
-      console.log("Yeah - this is happening...")
+      console.log("this.props.post: " + this.props.post)
       return (
       <Redirect to={{ pathname: '/'}}/>
       )
@@ -107,7 +108,7 @@ class Post extends Component{
             <Modal
               className="modal"
               overlayClassName="overlay"
-              isOpen={isModalOpen}
+              isOpen={modalIsOpen}
               onRequestClose={this.closeCommentModal}
               contentLabel="Modal"
               >

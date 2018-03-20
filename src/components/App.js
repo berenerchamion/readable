@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Route, withRouter, Link, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import {fetchAllCategories } from '../actions'
 import Main from './MainPage'
 import Post from './Post'
-import {fetchAllCategories } from '../actions'
 import AddPost from './AddPost'
 import EditPost from './EditPost'
 
@@ -28,7 +28,7 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/post/:id" component={Post} />
+          <Route exact path="/:category/:id" component={Post} />
           <Route exact path="/add" component={AddPost} />
           <Route path="/edit/:id" component={EditPost} />
         </Switch>
