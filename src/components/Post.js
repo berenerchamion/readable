@@ -3,15 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { Link, Redirect } from 'react-router-dom'
+import Modal from 'react-modal'
+import ReactDOM from 'react-dom'
 
 class Post extends Component{
 
   state = {
-    comments: [ ]
+    modalIsOpen: false,
+    postId: null
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchPostComments(this.props.postId)
+    Modal.setAppElement('#root');
   }
 
   submitPostVote = (id, voteType) => {
@@ -33,12 +37,39 @@ class Post extends Component{
     this.props.fetchPostComments()
   }
 
+  submitComment = (e) => {
+    e.preventDefault()
+    console.log("Comment: " + this.input.value)
+  }
+
+  openModal = () => {
+    this.setState(() => ({
+      modalIsOpen: true
+    }))
+  }
+
+  afterOpenModal(){
+
+  }
+
+  closeModal = () => {
+    this.setState(() => ({
+      modalIsOpen: false,
+      postId: null
+    }))
+  }
+
   render(){
+    console.log("Modal hell is here...")
     var posts = this.props.post
     var post = posts.pop()
     var comments = this.props.comments[this.props.postId]
 
-    if (!post){
+    const { isModalOpen } = this.state
+    console.log("modal open: " + isModalOpen)
+
+    if (!this.props.post){
+      console.log("Yeah - this is happening...")
       return (
       <Redirect to={{ pathname: '/'}}/>
       )
@@ -72,6 +103,39 @@ class Post extends Component{
               </ul>
             </div>
           }
+          <div className="comment-modal">
+            <Modal
+              className="modal"
+              overlayClassName="overlay"
+              isOpen={isModalOpen}
+              onRequestClose={this.closeCommentModal}
+              contentLabel="Modal"
+              >
+              <div className="comment-modal">
+                <h3 className="comment-modal-header">Add Your Comment:</h3>
+                <input
+                  className="comment-input"
+                  type="text"
+                  placeholder="Enter a comment..."
+                  ref={(input) => this.input = input}
+                  >
+                </input>
+                <button
+                  className="comment-button"
+                  onClick={this.submitComment}
+                  >
+                </button>
+                <button
+                  className="comment-button"
+                  onClick={this.closeCommentModal}
+                  >
+                </button>
+            </div>
+            </Modal>
+            <div className="add-comment">
+              <button className="add-comment" onClick={this.openCommentModal}>Add Comment</button>
+            </div>
+          </div>
         </div>
       )
     }
@@ -86,4 +150,4 @@ function mapStateToProps(state, { match }) {
   }
 }
 
-export default connect(mapStateToProps, actions) (Post)
+export default connect(mapStateToProps, actions)(Post)

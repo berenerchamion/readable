@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <div className="header">
           <div className="banner"><Link className="link-home" to={`/`}>House of Beor's Readable Project</Link> - need to fancy this up a bit later...</div>
-          <div className="addPost"><Link className="addPost" to={`/add`}>Add Something</Link></div>
+          <div className="add-post"><Link className="add-post" to={`/add`}>Add Something</Link></div>
         </div>
         <Switch>
           <Route exact path="/" component={Main} />
