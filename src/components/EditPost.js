@@ -37,8 +37,8 @@ class EditPost extends Component{
           () => this.props.history.push('/')
         }
     }
-
     return (
+
       <div className="editForm">
         <form onSubmit={this.editPost}>
           <h2>Edit Post {data.id}</h2>
@@ -63,7 +63,7 @@ class EditPost extends Component{
 
 function mapStateToProps(state, { match }) {
   return {
-    post: state.posts.filter((post) => (post.id === match.params.id))
+    post: state.posts.filter((post) => (post.id === match.params.postId))
   }
 }
 

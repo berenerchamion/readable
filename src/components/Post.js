@@ -67,10 +67,8 @@ class Post extends Component{
     var comments = this.props.comments[this.props.postId]
 
     const { modalIsOpen } = this.state
-    console.log("modal open: " + modalIsOpen)
 
     if (!this.props.post){
-      console.log("this.props.post: " + this.props.post)
       return (
       <Redirect to={{ pathname: '/'}}/>
       )

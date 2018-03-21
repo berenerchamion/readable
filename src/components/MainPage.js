@@ -50,6 +50,7 @@ class MainPage extends Component{
       catLabel = 'all'
       displayedPosts = posts
     }
+
     return (
       <div className="container">
         <div className="current-category">
@@ -70,7 +71,7 @@ class MainPage extends Component{
             <li className="post-details" key={post.id} >
               <Link to={`/${post.category}/${post.id}`}>
                 { post.title }</Link> by { post.author }
-                <Link className="edit-post" to={`/edit/${post.id}` }>
+                <Link className="edit-post" to={`/${post.category}/${post.id}/edit` }>
                     Edit Post
                 </Link><br/>
               Category: { post.category }<br/>
